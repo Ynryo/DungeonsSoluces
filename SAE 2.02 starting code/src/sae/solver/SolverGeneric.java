@@ -1,6 +1,5 @@
 package sae.solver;
 
-import sae.graph.GraphSoluce;
 import sae.graph.Node;
 
 
@@ -14,7 +13,6 @@ public class SolverGeneric implements Solver {
     }
 
     public GraphSoluce getGraphSoluce() {
-
     }
 
     public int getSteps() {
@@ -42,6 +40,6 @@ public class SolverGeneric implements Solver {
     }
 
     private void initializeResolution() {
-        
+
     }
 }
