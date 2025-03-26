@@ -8,11 +8,14 @@ public class SolverGeneric implements Solver {
     private Node endingNode;
     private int steps;
 
-    public SolverGeneric(Node node1, Node node2) {
-
+    public SolverGeneric(Node startingNode, Node endingNode) {
+        this.startingNode = startingNode;
+        this.endingNode = endingNode;
     }
 
     public GraphSoluce getGraphSoluce() {
+            return null;
+      // TODO document why this method is empty
     }
 
     public int getSteps() {

@@ -43,6 +43,4 @@ public class Dungeon {
 	public String toString() {
 		return "Dungeon [rooms=" + rooms + ", roomA=" + roomA + ", roomB=" + roomB + "]";
 	}
-
-	
 }

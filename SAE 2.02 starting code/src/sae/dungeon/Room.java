@@ -37,7 +37,7 @@ public class Room {
 
 	@Override
 	public String toString() {
-		return "Room " + name + " " + coords + " [adjacent rooms: "
+		return "\nRoom " + name + " " + coords + " [adjacent rooms: "
 				+ nextRooms.values().size() + "]";
 	}
 
