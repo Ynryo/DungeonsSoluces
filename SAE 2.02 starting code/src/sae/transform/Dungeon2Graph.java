@@ -29,15 +29,34 @@ public class Dungeon2Graph {
         dicoRoom = new HashMap<>(listRoom.size());
         Iterator<Room> it = listRoom.iterator();
         Graph graph = new Graph();
+        for (Node node : graph.getNodes()) {
+
+        }
         while (it.hasNext()) {
             Room key = it.next();
             Node value = new Node(key.getName(), key.getCoords());
             dicoRoom.put(key, value);
             graph.addNode(value);
+            // System.out.println("Room in dico " + );
+            for (int i = 0; i < key.getNextRooms().values().size(); i++) {
+                // System.out.println(key.getNextRooms());
+                // System.out.println("--------------------------------------------");
+                System.out.println(key.getNextRooms().values());
+                System.out.println("--------------------------------------------");
+                // System.out.println(key.getNextRooms().values().size());
+                // System.out.println("++++++++++++++++++++++++++++++++++++++++++++");
+                // add neighbors to selected key/node
+                for (Room room : key.getNextRooms().values()) {
+                    graph.addEdge(value, mappedNode(room));
+                }
+            }
+            // System.out.println("Dico size "+dicoRoom.size());
+            // System.out.println("--------------------------------------------");
+            // System.out.println("Nb dungeon rooms "+dungeon.getRooms());
+            // System.out.println("00000000000000000000000000000000000000000000");
         }
+        System.out.println(graph);
 
-        
-    }
         /*
          * for (Room room : listRoom) {
          * Node node = new Node(room.getName(), room.getCoords());
