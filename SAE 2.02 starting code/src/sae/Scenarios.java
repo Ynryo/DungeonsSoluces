@@ -77,7 +77,7 @@ public class Scenarios {
 		System.out.println("Node B : " + nodeB);
 		System.out.println("Voisins du node B : " + nodeA.neighbors());
 		
-		solveWithSolver(mapping, new SolverWithDFS(nodeA, nodeB));
+		// solveWithSolver(mapping, new SolverWithDFS(nodeA, nodeB));
 		// solveWithSolver(mapping, new SolverWithBFS(nodeA, nodeB));
 		// solveWithSolver(mapping, new SolverWithAstar(nodeA, nodeB));
 		

@@ -3,12 +3,12 @@ package sae.solver;
 import sae.graph.Node;
 
 
-public class SolverGeneric implements Solver {
+public abstract class SolverGeneric implements Solver {
     private Node startingNode;
     private Node endingNode;
     private int steps;
 
-    public SolverGeneric(Node startingNode, Node endingNode) {
+    SolverGeneric(Node startingNode, Node endingNode) {
         this.startingNode = startingNode;
         this.endingNode = endingNode;
     }
