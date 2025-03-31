@@ -1,5 +1,6 @@
 package sae.graph;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import sae.dungeon.Coord;
@@ -12,6 +13,7 @@ public class Node {
     public Node(String name, Coord coord) {
         this.name = name;
         this.coord = coord;
+        this.neighbors = new HashSet<>();
     }
 
     public String getName() {
