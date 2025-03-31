@@ -37,14 +37,20 @@ public class Dungeon2Graph {
             // }
         }
 
+        //create edges
         for (Room room : dungeon.getRooms()) {
-            graph.addEdge(null, null);
+            for (Room roomAdjacents : room.getNextRooms().values()) {
+                if (!mappedNode(room).neighbors().contains(mappedNode(roomAdjacents))) {
+                    graph.addEdge(mappedNode(room), mappedNode(roomAdjacents));
+                    // System.out.println(String.format("Nombre de neighbors : %d", mappedNode(room).neighbors().size()));
+                }
+            }
         }
         System.out.println(graph);
     }
 
     public Node mappedNode(Room room) {
-        return dicoRoom.get(room);
+        return dicoRoom.get(room); //get from dico (already transform from rooms to nodes)
     }
 
     @Override

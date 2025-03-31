@@ -8,6 +8,7 @@ import sae.dungeon.Coord;
 public class Node {
     private String name;
     private Set<Node> neighbors;
+
     private Coord coord;
 
     public Node(String name, Coord coord) {
@@ -45,6 +46,7 @@ public class Node {
 
     @Override
     public String toString() {
-        return "Node [name=" + name + ", neighbors=" + neighbors + ", coord=" + coord + "]";
+        return String.format("Node [name=%-2s, coord=%-7s]", name, coord);
+        // return "Node [name=" + name + ", neighbors=" + neighbors + ", coord=" + coord + "]";
     }
 }
