@@ -9,7 +9,6 @@ import sae.graph.Node;
 import sae.solver.GraphSoluce;
 import sae.dungeon.Room;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Set;
 
 public class Dungeon2Graph {
@@ -22,8 +21,11 @@ public class Dungeon2Graph {
     // }
 
     public Dungeon2Graph(Dungeon nDungeon) {
+        // Définition du donjon 
         dungeon = nDungeon;
+        // Création d'une liste de pièces
         Set<Room> listRoom = dungeon.getRooms();
+        // Définition du dictionnaire pièce->noeud
         dicoRoom = new HashMap<>(listRoom.size());
         Iterator<Room> it = listRoom.iterator();
         Graph graph = new Graph();
