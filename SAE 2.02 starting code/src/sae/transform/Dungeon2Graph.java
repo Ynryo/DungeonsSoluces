@@ -8,7 +8,6 @@ import sae.graph.Graph;
 import sae.graph.Node;
 import sae.solver.GraphSoluce;
 import sae.dungeon.Room;
-import java.util.Iterator;
 import java.util.Set;
 
 public class Dungeon2Graph {
@@ -32,9 +31,6 @@ public class Dungeon2Graph {
             Node value = new Node(room.getName(), room.getCoords());
             graph.addNode(value);
             dicoRoom.put(room, value);
-            // for (Room room : key.getNextRooms().values()) {
-            // graph.addEdge(value, mappedNode(room));
-            // }
         }
 
         //create edges

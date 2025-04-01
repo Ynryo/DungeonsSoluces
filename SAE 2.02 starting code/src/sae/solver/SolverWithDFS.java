@@ -6,6 +6,7 @@ public class SolverWithDFS extends SolverGeneric {
     
     public SolverWithDFS(Node startingNode, Node endingNode) {
         super(startingNode, endingNode);
-        
+
+        for (Node s : )
     }
 }

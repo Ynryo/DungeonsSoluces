@@ -46,7 +46,7 @@ public class Node {
 
     @Override
     public String toString() {
-        return String.format("Node [name=%-2s, coord=%-7s]", name, coord);
+        return String.format("Node [name=%-7s, coord=%-7s, neighbors=%d]", name, coord, neighbors.size());
         // return "Node [name=" + name + ", neighbors=" + neighbors + ", coord=" + coord + "]";
     }
 }

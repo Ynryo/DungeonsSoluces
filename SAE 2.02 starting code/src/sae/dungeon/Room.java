@@ -37,7 +37,7 @@ public class Room {
 
 	@Override
 	public String toString() {
-        return String.format("%nRoom [name=%-2s, coord=%-7s, adjacent rooms: %s]", name, coords, nextRooms.values().size());
+        return String.format("%nRoom [name=%-7s, coord=%-7s, adjacent rooms: %s]", name, coords, nextRooms.values().size());
 	}
 
 }

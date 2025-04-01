@@ -33,10 +33,11 @@ public class Scenarios {
 
 		solveDungeon(builder.createFirstDungeon());
 		solveDungeon(builder.createSecondDungeon());
-		// solveDungeon(builder.createThirdDungeon());
-		// solveDungeon(builder.createFourthDungeon());
-		// solveDungeon(builder.createFifthDungeon());
-		// solveDungeon(builder.createSixthDungeon());
+		System.out.println("test"+builder.createThirdDungeon());
+		solveDungeon(builder.createThirdDungeon());
+		solveDungeon(builder.createFourthDungeon());
+		solveDungeon(builder.createFifthDungeon());
+		solveDungeon(builder.createSixthDungeon());
 	}
 
 	private static void initLogger() {
@@ -64,7 +65,7 @@ public class Scenarios {
 
 		logger.info("***************************");
 		logger.info(() -> "   Résolution du donjon " + cptDungeon++);
-		logger.info("---------------------------");
+		logger.info("***************************");
 
 		Dungeon2Graph mapping = new Dungeon2Graph(dungeon);
 		// System.out.println(dungeon);

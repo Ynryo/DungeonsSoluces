@@ -132,6 +132,7 @@ public class GeneratorDungeonFrom {
 	private void manageEntry() {
 		Room entry = manageRoom();
 		dungeon.setRoomA(entry);
+		System.out.println(entry);
 	}
 
 	public Dungeon getDungeon() {
