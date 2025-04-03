@@ -1,23 +1,24 @@
 package sae.transform;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import sae.dungeon.Direction;
 import sae.dungeon.Dungeon;
 import sae.dungeon.DungeonSoluce;
 import sae.graph.Graph;
+import sae.graph.GraphSoluce;
 import sae.graph.Node;
-import sae.solver.GraphSoluce;
 import sae.dungeon.Room;
 import java.util.Set;
+import java.util.concurrent.ForkJoinWorkerThread;
 
 public class Dungeon2Graph {
 
     private Dungeon dungeon;
     private HashMap<Room, Node> dicoRoom;
-
-    // public Map<Room, Node> getDicoRoom() {
-    // return dicoRoom;
-    // }
 
     public Dungeon2Graph(Dungeon nDungeon) {
         // Définition du donjon
@@ -55,7 +56,24 @@ public class Dungeon2Graph {
     }
 
     public DungeonSoluce transform(GraphSoluce soluceGraph) {
-        return null;
-        // transform la soluce du graph en dungeon (directions dans la console)
+        DungeonSoluce dungeonSoluce = new DungeonSoluce();
+        List<Room> roomList = new ArrayList<Room>();
+        
+        for (Node node : soluceGraph.getSoluce()) {
+        	for (Room room : dicoRoom.keySet()) {
+        		if (dicoRoom.get(room) == node) {
+        			roomList.add(room);
+        		}
+        	}
+        }
+        
+        for (Room room : roomList) {
+        	Map<Direction, Room> dicos = room.getNextRooms();
+        	for (Direction direction : Direction.values()) {
+        		if (dicos.get(direction) == )
+        	}
+        }
+        
+        return dungeonSoluce;
     }
 }

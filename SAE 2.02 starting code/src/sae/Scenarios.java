@@ -10,8 +10,8 @@ import java.util.logging.SimpleFormatter;
 import sae.dungeon.Dungeon;
 import sae.dungeon.DungeonBuilder;
 import sae.dungeon.DungeonSoluce;
+import sae.graph.GraphSoluce;
 import sae.graph.Node;
-import sae.solver.GraphSoluce;
 import sae.solver.Solver;
 import sae.solver.SolverWithAstar;
 import sae.solver.SolverWithBFS;
@@ -32,12 +32,12 @@ public class Scenarios {
 		DungeonBuilder builder = new DungeonBuilder();
 
 		solveDungeon(builder.createFirstDungeon());
-		solveDungeon(builder.createSecondDungeon());
+		//solveDungeon(builder.createSecondDungeon());
 		System.out.println("test"+builder.createThirdDungeon());
-		solveDungeon(builder.createThirdDungeon());
-		solveDungeon(builder.createFourthDungeon());
-		solveDungeon(builder.createFifthDungeon());
-		solveDungeon(builder.createSixthDungeon());
+		//solveDungeon(builder.createThirdDungeon());
+		//solveDungeon(builder.createFourthDungeon());
+		//solveDungeon(builder.createFifthDungeon());
+		//solveDungeon(builder.createSixthDungeon());
 	}
 
 	private static void initLogger() {
@@ -78,7 +78,7 @@ public class Scenarios {
 		System.out.println("Node B : " + nodeB);
 		System.out.println("Voisins du node B : " + nodeA.neighbors());
 		
-		// solveWithSolver(mapping, new SolverWithDFS(nodeA, nodeB));
+		solveWithSolver(mapping, new SolverWithDFS(nodeA, nodeB));
 		// solveWithSolver(mapping, new SolverWithBFS(nodeA, nodeB));
 		// solveWithSolver(mapping, new SolverWithAstar(nodeA, nodeB));
 		

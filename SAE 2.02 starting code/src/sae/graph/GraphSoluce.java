@@ -1,9 +1,9 @@
-package sae.solver;
+package sae.graph;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import sae.graph.Node;
+import sae.solver.SolverGeneric;
 
 public class GraphSoluce {
     private List<Node> soluce;
