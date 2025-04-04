@@ -28,7 +28,7 @@ public class Dungeon2Graph {
         dicoRoom = new HashMap<>(listRoom.size());
         Graph graph = new Graph();
         for (Room room : dungeon.getRooms()) { // convert room into node without neighbors
-            Node value = new Node(room.getName(), room.getCoords());
+            Node value = new Node(room.getName(), room.getCoords(), graph);
             graph.addNode(value);
             dicoRoom.put(room, value);
         }

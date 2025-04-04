@@ -8,13 +8,19 @@ import sae.dungeon.Coord;
 public class Node {
     private String name;
     private Set<Node> neighbors;
-
     private Coord coord;
+    private boolean marked = false;
+    private Graph parent;
 
-    public Node(String name, Coord coord) {
+    public Node(String name, Coord coord, Graph graph) {
         this.name = name;
         this.coord = coord;
         this.neighbors = new HashSet<>();
+        this.parent =  graph;
+    }
+
+    public Graph getParent() {
+        return parent;
     }
 
     public String getName() {
@@ -33,6 +39,14 @@ public class Node {
         neighbors.add(node);
     }
 
+    public void setMarked(boolean marked) {
+        this.marked = marked;
+    }
+
+    public boolean isMarked() {
+        return marked;
+    }
+
     @Override
     public boolean equals(Object obj) {
 		if (this == obj)
@@ -46,7 +60,7 @@ public class Node {
 
     @Override
     public String toString() {
-        return String.format("Node [name=%-7s, coord=%-7s, neighbors=%d]", name, coord, neighbors.size());
+        return String.format("Node [name=%-2s, coord=%-7s, neighbors=%d, graph=%-5s]", name, coord, neighbors.size(), getParent().getName());
         // return "Node [name=" + name + ", neighbors=" + neighbors + ", coord=" + coord + "]";
     }
 }

@@ -1,48 +1,57 @@
 package sae.solver;
 
+import sae.solver.GraphSoluce;
 import sae.graph.Node;
 
-
 public abstract class SolverGeneric implements Solver {
-    private Node startingNode;
-    private Node endingNode;
-    private int steps;
 
-    SolverGeneric(Node startingNode, Node endingNode) {
-        this.startingNode = startingNode;
-        this.endingNode = endingNode;
-    }
+	private Node startingNode;
+	private Node endingNode;
+	
+	private int steps;
+	
+	private GraphSoluce graphSoluce;
 
-    public GraphSoluce getGraphSoluce() {
-            return null;
-      // TODO document why this method is empty
-    }
+	public SolverGeneric(Node startingNode, Node endingNode) {
+		this.startingNode = startingNode;
+		this.endingNode = endingNode;
+	}
 
-    public int getSteps() {
-        return steps;
-    }
+	@Override
+	public GraphSoluce getGraphSoluce() {
+		return graphSoluce;
+	}
 
-    public void incSteps() {
-        steps++;
-    }
+	@Override
+	public int getSteps() {
+		return steps;
+	}
+	
+	public void incSteps() {
+		steps++;
+	}
 
-    public Node getStartingNode() {
-        return startingNode;
-    }
+	public Node getStartingNode() {
+		return startingNode;
+	}
 
-    public Node getEndingNode() {
-        return endingNode;
-    }
+	public Node getEndingNode() {
+		return endingNode;
+	}
 
-    public void solve() {
+	@Override
+	public void solve() {
+		initializeResolution();
+		resolve();
+	}
 
-    }
+	protected abstract void resolve();
 
-    protected void resolve() {
-
-    }
-
-    private void initializeResolution() {
-
-    }
+	private void initializeResolution() {
+		steps = 0;
+		graphSoluce = new GraphSoluce();
+	}
+	
+	
+	
 }
