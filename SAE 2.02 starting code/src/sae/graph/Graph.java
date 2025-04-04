@@ -38,8 +38,9 @@ public class Graph {
         node.addNeighbors(node2);
         node2.addNeighbors(node);
     }
-
-    public String toString() {
-        return "Y'a rien ici chef, c'est juste un graphe.";
-    }
+    
+	@Override
+	public String toString() {
+		return "Graph [nodes=" + nodes + "]";
+	}
 }
