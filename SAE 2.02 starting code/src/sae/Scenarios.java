@@ -90,6 +90,7 @@ public class Scenarios {
 		long startingTime = System.currentTimeMillis();
 		
 		for (int i = 0; i < NB_ATTEMPTS; i++) {
+			// use chosen solver (bfs, dfs, a*)
 			solver.solve();
 		}
 		long endingTime = System.currentTimeMillis();
