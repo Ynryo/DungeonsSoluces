@@ -20,4 +20,9 @@ public class GraphSoluce {
     public List<Node> getSoluce() {
         return soluce;
     }
+
+    @Override
+    public String toString() {
+        return "GraphSoluce [soluce=" + soluce + ", graphSoluce=" + graphSoluce + "]";
+    }
 }

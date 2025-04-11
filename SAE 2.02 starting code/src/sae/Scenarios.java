@@ -31,10 +31,11 @@ public class Scenarios {
 
 		DungeonBuilder builder = new DungeonBuilder();
 
-		solveDungeon(builder.createFirstDungeon());
+		// solveDungeon(builder.createFirstDungeon());
 		//solveDungeon(builder.createSecondDungeon());
-		System.out.println("test"+builder.createThirdDungeon());
-		//solveDungeon(builder.createThirdDungeon());
+		System.out.println("----------------------SCÉNARIO------------------------");
+		System.out.println("DUNGEON CREATE " + builder.createThirdDungeon());
+		solveDungeon(builder.createThirdDungeon());
 		//solveDungeon(builder.createFourthDungeon());
 		//solveDungeon(builder.createFifthDungeon());
 		//solveDungeon(builder.createSixthDungeon());
@@ -63,9 +64,9 @@ public class Scenarios {
 
 	private static void solveDungeon(Dungeon dungeon) {
 
-		logger.info("***************************");
+		logger.info("-------------------------------------");
 		logger.info(() -> "   Résolution du donjon " + cptDungeon++);
-		logger.info("***************************");
+		logger.info("-------------------------------------");
 
 		Dungeon2Graph mapping = new Dungeon2Graph(dungeon);
 		// System.out.println(dungeon);
