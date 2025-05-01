@@ -9,7 +9,6 @@ public class Node {
     private String name;
     private Set<Node> neighbors;
     private Coord coord;
-    private boolean marked = false;
     private Graph parent;
 
     public Node(String name, Coord coord, Graph graph) {
@@ -37,14 +36,6 @@ public class Node {
 
     public void addNeighbors(Node node) {
         neighbors.add(node);
-    }
-
-    public void setMarked(boolean marked) {
-        this.marked = marked;
-    }
-
-    public boolean isMarked() {
-        return marked;
     }
 
     @Override

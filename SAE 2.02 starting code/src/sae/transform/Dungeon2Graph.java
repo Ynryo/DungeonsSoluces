@@ -51,15 +51,15 @@ public class Dungeon2Graph {
         return dicoRoom.get(room); // get from dico (already transform from rooms to nodes)
     }
 
-    public DungeonSoluce transform(GraphSoluce soluceGraph) { // graph to dungeon to text
+    public DungeonSoluce transform(GraphSoluce soluceGraph) {
         DungeonSoluce dungeonSoluce = new DungeonSoluce();
         List<Room> roomList = new ArrayList<Room>();
 
-        // System.out.println("kkk    "+soluceGraph.getSoluce());
-        for (Node node : soluceGraph.getSoluce()) { //add all nodes in dico
+        // Parcourir les noeuds de laa solution graphe pour trouver leurs équivalents en pièce donjon
+        for (Node node : soluceGraph.getSoluce()) {
             for (Room room : dicoRoom.keySet()) {
                 if (dicoRoom.get(room) == node) {
-                    roomList.add(room);
+                    roomList.add(room); // Si graphe soluce était C->B->A, la liste pièce reste C->B->A (A en haut de la pile)
                 }
             }
         }
@@ -67,11 +67,7 @@ public class Dungeon2Graph {
         for (Room room : roomList) {
             Map<Direction, Room> dicos = room.getNextRooms();
             for (Direction direction : Direction.values()) {
-                // if (dicos.get(direction) == ) {
 
-                // }
-                // System.out.println("kkk");
-                // System.out.println(dicos.get(direction));
             }
         }
 

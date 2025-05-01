@@ -31,7 +31,6 @@ public class SolverWithDFS extends SolverGeneric {
 			incSteps();
 			predecessor = dicoNode.get(predecessor);
 		}
-		//System.out.println(graphSoluce.getSoluce());
 	}
 	
 	private void Prof(Node i) {
@@ -42,10 +41,5 @@ public class SolverWithDFS extends SolverGeneric {
 				Prof(v);
 			}
 		}
-	}
-
-	@Override
-	public String toString() {
-		return "DFS";
 	}
 }
