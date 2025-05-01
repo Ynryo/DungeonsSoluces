@@ -26,11 +26,13 @@ public class SolverWithDFS extends SolverGeneric {
 		Prof(startingNode);
 		
 		Node predecessor = dicoNode.get(getEndingNode());
+		graphSoluce.add(getEndingNode());
 		while(dicoNode.get(predecessor) != null) {
 			graphSoluce.add(predecessor);
 			incSteps();
 			predecessor = dicoNode.get(predecessor);
 		}
+		graphSoluce.add(getStartingNode());
 	}
 	
 	private void Prof(Node i) {

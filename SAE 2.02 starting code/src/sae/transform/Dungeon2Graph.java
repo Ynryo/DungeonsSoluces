@@ -2,6 +2,7 @@ package sae.transform;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -55,23 +56,37 @@ public class Dungeon2Graph {
         DungeonSoluce dungeonSoluce = new DungeonSoluce();
         List<Room> roomList = new ArrayList<Room>();
 
-        // Parcourir les noeuds de laa solution graphe pour trouver leurs équivalents en pièce donjon
+        // Parcourir les noeuds de la solution graphe pour trouver leurs équivalents en pièce donjon
         for (Node node : soluceGraph.getSoluce()) {
             for (Room room : dicoRoom.keySet()) {
                 if (dicoRoom.get(room) == node) {
-                    roomList.add(room); // Si graphe soluce était C->B->A, la liste pièce reste C->B->A (A en haut de la pile)
+                    roomList.add(room); // Si graphe soluce était C->B->A, la liste pièce reste C->B->A (A en haut de la liste)
                 }
             }
         }
 
-        for (Room room : roomList) {
-            Map<Direction, Room> dicos = room.getNextRooms();
-            for (Direction direction : Direction.values()) {
-
-            }
+        // On utilise un iterator au lieu d'une boucle for pour pouvoir facilement connaître le prochain
+        Iterator<Room> it = roomList.iterator();
+        
+        // Pour initier la pièce "précédente"
+        Room lastRoom = null;
+        if (it.hasNext()) {
+        	lastRoom = it.next();
+        }
+        
+        // Tant qu'il reste des pièces dans notre liste de pièce
+        while (it.hasNext()) {
+        	Room currentRoom = it.next(); // On initialise la pièce "courante"
+        	for(Direction dir: Direction.values()) { // On parcours les directions
+        		Map<Direction, Room> nextRooms = currentRoom.getNextRooms(); // On récupère les pièces voisines de la pièce courante
+        		if (nextRooms.get(dir) == lastRoom) { // Si une pièce voisine de la pièce courante EST la pièce précédente
+        			dungeonSoluce.addDirection(dir); // On retient la direction
+        		}
+        	}
+        	lastRoom = currentRoom; // Avant de passer à la prochaine pièce, la pièce courante devient la pièce précédente
         }
 
-        return dungeonSoluce;
+        return dungeonSoluce; // Retour de la solution donjon
     }
 
     @Override
