@@ -45,4 +45,9 @@ public class SolverWithBFS extends SolverGeneric {
 			predecessor = dicoNode.get(predecessor);
 		}
 	}
+	
+	@Override
+	public String toString() {
+		return "BFS";
+	}
 }
