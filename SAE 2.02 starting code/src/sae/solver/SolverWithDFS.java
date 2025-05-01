@@ -22,7 +22,7 @@ public class SolverWithDFS extends SolverGeneric {
 	protected void resolve() {
 		GraphSoluce graphSoluce = getGraphSoluce();
 		Node startingNode = getStartingNode();
-		dicoNode.put(startingNode, null);
+		dicoNode.put(startingNode, null); 
 		Prof(startingNode);
 		
 		Node predecessor = dicoNode.get(getEndingNode());

@@ -57,7 +57,7 @@ public class Dungeon2Graph {
         List<Room> roomList = new ArrayList<Room>();
 
         // Parcourir les noeuds de la solution graphe pour trouver leurs équivalents en pièce donjon
-        for (Node node : soluceGraph.getSoluce()) {
+        for (Node node : soluceGraph.getSoluce()) { 
             for (Room room : dicoRoom.keySet()) {
                 if (dicoRoom.get(room) == node) {
                     roomList.add(room); // Si graphe soluce était C->B->A, la liste pièce reste C->B->A (A en haut de la liste)
