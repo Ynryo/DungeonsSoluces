@@ -28,7 +28,7 @@ public class SolverWithAstar extends SolverGeneric {
 		openList.add(startingNode);
 		while(!openList.isEmpty()) {
 			Node u = openList.poll();
-			
+			 
 			Coord coordU = u.getCoord();
 			if (coordU.getX() == endingCoord.getX() && coordU.getY() == endingCoord.getY()) {
 				// Reconstituer chemin méthode

@@ -17,7 +17,7 @@ public class SolverWithDFS extends SolverGeneric {
         dicoNode = new HashMap<Node, Node>();
         markedNodes = new ArrayList<Node>();
     }
- 
+  
 	@Override
 	protected void resolve() {
 		GraphSoluce graphSoluce = getGraphSoluce();
