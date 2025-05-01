@@ -42,4 +42,9 @@ public class SolverWithDFS extends SolverGeneric {
 			}
 		}
 	}
+	
+	@Override
+	public String toString() {
+		return "DFS";
+	}
 }

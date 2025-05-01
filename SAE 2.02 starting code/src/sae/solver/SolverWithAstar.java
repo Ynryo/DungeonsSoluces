@@ -51,4 +51,11 @@ public class SolverWithAstar extends SolverGeneric {
 			return (coordB.getX() - coordA.getX()) + (coordB.getY() - coordA.getY());
 		}
 	};
+
+	@Override
+	public String toString() {
+		return "A*";
+	}
+	
+	
 }
