@@ -31,7 +31,7 @@ public class Dungeon2Graph {
         for (Room room : dungeon.getRooms()) { // convert room into node without neighbors
             Node value = new Node(room.getName(), room.getCoords(), graph);
             graph.addNode(value);
-            dicoRoom.put(room, value);
+            dicoRoom.put(room, value); 
         }
 
         // create edges (neighbors)

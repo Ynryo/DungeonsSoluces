@@ -28,7 +28,7 @@ public class SolverWithBFS extends SolverGeneric {
 		markedNodes.add(startingNode);
 		file.add(startingNode);
 		while(!file.isEmpty()) {
-			Node s = file.getFirst();
+			Node s = file.getFirst(); 
 			for(Node v: s.neighbors()) {
 				if (!markedNodes.contains(v)) {
 					dicoNode.put(v, s);

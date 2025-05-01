@@ -34,7 +34,7 @@ public class SolverWithAstar extends SolverGeneric {
 				// Reconstituer chemin méthode
 				break; // Pas propre
 			}
-			
+			 
 			for (Node v: u.neighbors()) {
 				if (!closedList.contains(v) && !openList.contains(v)) {
 					openList.add(v);
