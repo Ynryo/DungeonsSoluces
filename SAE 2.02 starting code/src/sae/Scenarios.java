@@ -20,7 +20,7 @@ import sae.transform.Dungeon2Graph;
 
 public class Scenarios {
 
-	private static final int NB_ATTEMPTS = 10000;
+	private static final int NB_ATTEMPTS = 1;
 	private static int cptDungeon = 1;
 	
 	private static final Logger logger = Logger.getLogger("mon logger");
@@ -31,14 +31,14 @@ public class Scenarios {
 
 		DungeonBuilder builder = new DungeonBuilder();
 
-		// solveDungeon(builder.createFirstDungeon());
-		//solveDungeon(builder.createSecondDungeon());
-		System.out.println("----------------------SCÉNARIO------------------------");
-		System.out.println("DUNGEON CREATE " + builder.createThirdDungeon());
+		solveDungeon(builder.createFirstDungeon());
+		solveDungeon(builder.createSecondDungeon());
+		//System.out.println("----------------------SCÉNARIO------------------------");
+		//System.out.println("DUNGEON CREATE " + builder.createThirdDungeon());
 		solveDungeon(builder.createThirdDungeon());
-		//solveDungeon(builder.createFourthDungeon());
-		//solveDungeon(builder.createFifthDungeon());
-		//solveDungeon(builder.createSixthDungeon());
+		solveDungeon(builder.createFourthDungeon());
+		solveDungeon(builder.createFifthDungeon());
+		solveDungeon(builder.createSixthDungeon());
 	}
 
 	private static void initLogger() {
@@ -70,17 +70,17 @@ public class Scenarios {
 
 		Dungeon2Graph mapping = new Dungeon2Graph(dungeon);
 		// System.out.println(dungeon);
-		System.out.println(mapping);
+		//System.out.println(mapping);
 
 		Node nodeA = mapping.mappedNode(dungeon.getRoomA());
-		System.out.println("Node A : " + nodeA);
-		System.out.println("Voisins du node A : " + nodeA.neighbors());
+		//System.out.println("Node A : " + nodeA);
+		//System.out.println("Voisins du node A : " + nodeA.neighbors());
 		Node nodeB = mapping.mappedNode(dungeon.getRoomB());
-		System.out.println("Node B : " + nodeB);
-		System.out.println("Voisins du node B : " + nodeA.neighbors());
+		//System.out.println("Node B : " + nodeB);
+		//System.out.println("Voisins du node B : " + nodeA.neighbors());
 		
-		solveWithSolver(mapping, new SolverWithDFS(nodeA, nodeB));
-		// solveWithSolver(mapping, new SolverWithBFS(nodeA, nodeB));
+		//solveWithSolver(mapping, new SolverWithDFS(nodeA, nodeB));
+		solveWithSolver(mapping, new SolverWithBFS(nodeA, nodeB));
 		// solveWithSolver(mapping, new SolverWithAstar(nodeA, nodeB));
 		
 	}
