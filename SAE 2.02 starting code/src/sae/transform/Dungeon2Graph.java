@@ -54,25 +54,35 @@ public class Dungeon2Graph {
     public DungeonSoluce transform(GraphSoluce soluceGraph) {
         DungeonSoluce dungeonSoluce = new DungeonSoluce();
         List<Room> roomList = new ArrayList<Room>();
-
-        // Parcourir les noeuds de laa solution graphe pour trouver leurs équivalents en pièce donjon
+    
+        // 1. Parcourir les noeuds de la solution graphe pour trouver leurs équivalents en pièce donjon
         for (Node node : soluceGraph.getSoluce()) {
             for (Room room : dicoRoom.keySet()) {
                 if (dicoRoom.get(room) == node) {
-                    roomList.add(room); // Si graphe soluce était C->B->A, la liste pièce reste C->B->A (A en haut de la pile)
+                    roomList.add(room);
+                    break; // On a trouvé la bonne room, inutile de continuer
                 }
             }
         }
-
-        for (Room room : roomList) {
-            Map<Direction, Room> dicos = room.getNextRooms();
+    
+        // 2. Pour chaque paire consécutive de rooms, trouver la direction à suivre
+        for (int i = 0; i < roomList.size() - 1; i++) {
+            Room current = roomList.get(i);
+            Room next = roomList.get(i + 1);
+            Map<Direction, Room> nextRooms = current.getNextRooms();
+    
+            // Cherche la direction qui mène de current à next
             for (Direction direction : Direction.values()) {
-
+                if (nextRooms.get(direction) == next) {
+                    dungeonSoluce.addDirection(direction);
+                    break; // On a trouvé la direction, inutile de continuer
+                }
             }
         }
-
+    
         return dungeonSoluce;
     }
+    
 
     @Override
     public String toString() {

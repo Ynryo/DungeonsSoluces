@@ -14,7 +14,7 @@ public class GraphSoluce {
     }
 
     public void add(Node node2add) {
-        soluce.add(0, node2add); //ajoute le node au debut de la list
+        soluce.add(0, node2add); //ajoute le node au debut de la lis
     }
 
     public List<Node> getSoluce() {

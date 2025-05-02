@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.zip.GZIPOutputStream;
 
 import sae.graph.GraphSoluce;
 import sae.graph.Node;
@@ -48,7 +49,7 @@ public class SolverWithBFS extends SolverGeneric {
 
         // Reconstitution du chemin
         Node current = endingNode;
-		GraphSoluce graphSoluce = new GraphSoluce();
+		GraphSoluce graphSoluce = getGraphSoluce();
         while (current != null && dicoNode.containsKey(current)) {
             graphSoluce.add(current); // ajoute au début
             current = dicoNode.get(current);
@@ -58,7 +59,6 @@ public class SolverWithBFS extends SolverGeneric {
             graphSoluce.add(startingNode);
         }
 
-        // setGraphSoluce(new GraphSoluce(path));
     }
 
     @Override
