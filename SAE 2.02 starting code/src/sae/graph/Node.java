@@ -52,6 +52,5 @@ public class Node {
     @Override
     public String toString() {
         return String.format("Node [name=%-2s, coord=%-7s, neighbors=%d, graph=%-5s]", name, coord, neighbors.size(), getParent().getName());
-        // return "Node [name=" + name + ", neighbors=" + neighbors + ", coord=" + coord + "]";
     }
 }
