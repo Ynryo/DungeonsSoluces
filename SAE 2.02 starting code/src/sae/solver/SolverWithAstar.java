@@ -1,91 +1,81 @@
 package sae.solver;
 
 import java.util.*;
-
 import sae.dungeon.Coord;
 import sae.graph.GraphSoluce;
 import sae.graph.Node;
 
 public class SolverWithAstar extends SolverGeneric {
-    private Set<Node> closedList;
+    private List<Node> closedList;
     private PriorityQueue<Node> openList;
-    private Map<Node, Node> cameFrom; // Pour reconstituer le chemin
-    private Map<Node, Integer> gScore; // Coût du départ à ce nœud
-    private Map<Node, Integer> fScore; // gScore + heuristique
+    private HashMap<Node, Node> dicoNode;
 
     public SolverWithAstar(Node startingNode, Node endingNode) {
         super(startingNode, endingNode);
-        closedList = new HashSet<Node>();
-        cameFrom = new HashMap<Node, Node>();
-        gScore = new HashMap<Node, Integer>();
-        fScore = new HashMap<Node, Integer>();
-        // Le comparator a besoin de fScore, donc on le définit après l'init
-        openList = new PriorityQueue<Node>(new Comparator<Node>() {
-            public int compare(Node a, Node b) {
-                return Integer.compare(
-                    fScore.getOrDefault(a, Integer.MAX_VALUE),
-                    fScore.getOrDefault(b, Integer.MAX_VALUE)
-                );
-            }
-        });
+        closedList = new ArrayList<Node>();
+        openList = new PriorityQueue<Node>(compareHeuristique);
+        dicoNode = new HashMap<Node, Node>();
     }
 
     @Override
     protected void resolve() {
-        Node start = getStartingNode();
-        Node goal = getEndingNode();
-
-        gScore.put(start, 0);
-        fScore.put(start, heuristic(start, goal));
-        openList.add(start);
-
+        openList.add(getStartingNode());
         while (!openList.isEmpty()) {
-            Node current = openList.poll();
+            Node u = openList.poll();
+            Coord coordU = u.getCoord();
+            Coord coordObj = getEndingNode().getCoord();
+            if (coordU.getX() == coordObj.getX() && coordU.getY() == coordObj.getY()) {
+                reconstituerChemin(u);
+                break;
+            }
+            for (Node v : u.neighbors()) {
+                if (!closedList.contains(v) && !openList.contains(v)) {
+                    v.setCout(u.getCout() + 1);
+                    openList.add(v);
+                }
+            }
+            closedList.add(u);
+        }
+    }
 
-            // if (current.equals(goal)) {
-            //     // Chemin trouvé, on stocke la solution
-            //     List<Node> path = reconstructPath(cameFrom, current);
-            //     setGraphSoluce(new GraphSoluce(path));
-            //     return;
-            // }
-
-            closedList.add(current);
-
-            for (Node neighbor : current.neighbors()) {
-                if (closedList.contains(neighbor))
-                    continue;
-
-                int tentativeG = gScore.get(current) + 1; // Coût d'un pas
-
-                if (!gScore.containsKey(neighbor) || tentativeG < gScore.get(neighbor)) {
-                    cameFrom.put(neighbor, current);
-                    gScore.put(neighbor, tentativeG);
-                    fScore.put(neighbor, tentativeG + heuristic(neighbor, goal));
-                    if (!openList.contains(neighbor)) {
-                        openList.add(neighbor);
-                    }
+    private void reconstituerChemin(Node u) {
+        while (!u.equals(getStartingNode())) {
+            if (closedList.contains(u))
+                ;
+            for (Node v : u.neighbors()) {
+                if (v.getCout() == u.getCout() - 1) {
+                    dicoNode.put(u, v);
+                    u = v;
                 }
             }
         }
-        // Si aucun chemin trouvé, on stocke une solution vide
-        // setGraphSoluce(new GraphSoluce(new ArrayList<Node>()));
-    }
-
-    // Heuristique = distance de Manhattan
-    private int heuristic(Node a, Node b) {
-        Coord ca = a.getCoord();
-        Coord cb = b.getCoord();
-        return Math.abs(ca.getX() - cb.getX()) + Math.abs(ca.getY() - cb.getY());
-    }
-
-    // Reconstitue le chemin à partir de cameFrom
-    private List<Node> reconstructPath(Map<Node, Node> cameFrom, Node current) {
-        LinkedList<Node> path = new LinkedList<Node>();
-        path.addFirst(current);
-        while (cameFrom.containsKey(current)) {
-            current = cameFrom.get(current);
-            path.addFirst(current);
+        GraphSoluce graphSoluce = getGraphSoluce();
+        Node predecessor = dicoNode.get(getEndingNode());
+        graphSoluce.add(getEndingNode());
+        while (dicoNode.get(predecessor) != null) {
+            graphSoluce.add(predecessor);
+            incSteps();
+            predecessor = dicoNode.get(predecessor);
         }
-        return path;
+        graphSoluce.add(getStartingNode());
+        // Pour éviter une erreur où la solution disparaît car les openList & closedList
+        // ont déjà la solution
+        closedList = new ArrayList<Node>();
+        openList = new PriorityQueue<Node>(compareHeuristique);
+        dicoNode = new HashMap<Node, Node>();
+    }
+
+    public Comparator<Node> compareHeuristique = new Comparator<Node>() {
+        @Override
+        public int compare(Node node1, Node node2) {
+            Coord node1Coord = node1.getCoord();
+            Coord node2Coord = node2.getCoord();
+            return (node2Coord.getY() - node1Coord.getY()) + (node2Coord.getX() - node1Coord.getX());
+        }
+    };
+
+    @Override
+    public String toString() {
+        return "A*";
     }
 }

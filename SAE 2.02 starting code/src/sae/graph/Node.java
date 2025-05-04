@@ -10,12 +10,18 @@ public class Node {
     private Set<Node> neighbors;
     private Coord coord;
     private Graph parent;
+    private int cout;
 
     public Node(String name, Coord coord, Graph graph) {
         this.name = name;
         this.coord = coord;
         this.neighbors = new HashSet<>();
-        this.parent =  graph;
+        this.parent = graph;
+        this.cout = 0;
+    }
+
+    public int getCout() {
+        return cout;
     }
 
     public Graph getParent() {
@@ -34,23 +40,28 @@ public class Node {
         return neighbors;
     }
 
+    public void setCout(int cout) {
+        this.cout = cout;
+    }
+
     public void addNeighbors(Node node) {
         neighbors.add(node);
     }
 
     @Override
     public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!(obj instanceof Node))
-			return false;
-		Node other = (Node) obj;
+        if (this == obj)
+            return true;
+        if (!(obj instanceof Node))
+            return false;
+        Node other = (Node) obj;
 
         return this.getCoord() == other.getCoord();
     }
 
     @Override
     public String toString() {
-        return String.format("Node [name=%-2s, coord=%-7s, neighbors=%d, graph=%-5s]", name, coord, neighbors.size(), getParent().getName());
+        return String.format("Node [name=%-2s, coord=%-7s, neighbors=%d, graph=%-5s]", name, coord, neighbors.size(),
+                getParent().getName());
     }
 }

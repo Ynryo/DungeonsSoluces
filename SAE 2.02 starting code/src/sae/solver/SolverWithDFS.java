@@ -11,40 +11,45 @@ import sae.graph.Node;
 public class SolverWithDFS extends SolverGeneric {
 	private HashMap<Node, Node> dicoNode;
 	private List<Node> markedNodes;
-    
-    public SolverWithDFS(Node startingNode, Node endingNode) {
-        super(startingNode, endingNode);
-        dicoNode = new HashMap<Node, Node>();
-        markedNodes = new ArrayList<Node>();
-    }
-  
+
+	public SolverWithDFS(Node startingNode, Node endingNode) {
+		super(startingNode, endingNode);
+		dicoNode = new HashMap<Node, Node>();
+		markedNodes = new ArrayList<Node>();
+	}
+
 	@Override
 	protected void resolve() {
 		GraphSoluce graphSoluce = getGraphSoluce();
+		Node endingNode = getEndingNode();
 		Node startingNode = getStartingNode();
-		dicoNode.put(startingNode, null); 
+		dicoNode.put(startingNode, null);
 		Prof(startingNode);
-		
-		Node predecessor = dicoNode.get(getEndingNode()); 
-		graphSoluce.add(getEndingNode());
-		while(dicoNode.get(predecessor) != null) {
-			graphSoluce.add(predecessor);
-			incSteps();
-			predecessor = dicoNode.get(predecessor);
+
+		Node current = endingNode;
+		int steps = 0;
+		while (current != null && dicoNode.containsKey(current)) {
+			graphSoluce.add(current);
+			current = dicoNode.get(current);
+			steps++;
 		}
-		graphSoluce.add(getStartingNode());
+		if (steps > 0)
+			steps--; // nn enlève la step en trop parce qu'elle est reloue
+		for (int i = 0; i < steps; i++)
+			incSteps();
+
 	}
-	
+
 	private void Prof(Node i) {
 		markedNodes.add(i);
-		for(Node v : i.neighbors()) {
-			if(!markedNodes.contains(v)) {
+		for (Node v : i.neighbors()) {
+			if (!markedNodes.contains(v)) {
 				dicoNode.put(v, i);
 				Prof(v);
 			}
 		}
 	}
-	
+
 	@Override
 	public String toString() {
 		return "DFS";

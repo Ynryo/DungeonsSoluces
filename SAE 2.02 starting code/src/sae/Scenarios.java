@@ -20,7 +20,7 @@ import sae.transform.Dungeon2Graph;
 
 public class Scenarios {
 
-	private static final int NB_ATTEMPTS = 1;
+	private static final int NB_ATTEMPTS = 10000;
 	private static int cptDungeon = 1;
 	
 	private static final Logger logger = Logger.getLogger("mon logger");
@@ -70,15 +70,13 @@ public class Scenarios {
 		logger.info("-------------------------------------");
 
 		Dungeon2Graph mapping = new Dungeon2Graph(dungeon);
-		// System.out.println(dungeon);
-		//System.out.println(mapping);
 
 		Node nodeA = mapping.mappedNode(dungeon.getRoomA());
 		Node nodeB = mapping.mappedNode(dungeon.getRoomB());
 		
 		solveWithSolver(mapping, new SolverWithDFS(nodeA, nodeB));
 		solveWithSolver(mapping, new SolverWithBFS(nodeA, nodeB));
-		// solveWithSolver(mapping, new SolverWithAstar(nodeA, nodeB));
+		solveWithSolver(mapping, new SolverWithAstar(nodeA, nodeB));
 		
 	}
 
